@@ -1,6 +1,8 @@
 <?xml version="1.1" encoding="UTF-8" ?>
-<car fourWeelDrive="true" countOfDoors="5" carBrand="Seat">
-    <engine type="TFSI"/>
+<car carBrand="Seat" countOfDoors="5" fourWheelDrive="true">
+    <engine>
+        <type>TFSI</type>
+    </engine>
     <features>
         <feature>Red</feature>
         <feature>TVSet</feature>
