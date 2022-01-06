@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<car fourWeelDrive="true" countOfDoors="5" carBrand="Seat">
+    <engine type="TFSI"/>
+    <features>
+        <feature>Red</feature>
+        <feature>TVSet</feature>
+        <feature>GPS</feature>
+    </features>
+</car>
