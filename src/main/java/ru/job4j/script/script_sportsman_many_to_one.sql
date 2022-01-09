@@ -1,4 +1,3 @@
-
 CREATE table section(
     id serial primary key,
     section_name varchar(255)

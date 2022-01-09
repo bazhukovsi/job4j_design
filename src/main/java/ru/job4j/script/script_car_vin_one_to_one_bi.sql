@@ -1,4 +1,3 @@
-
 CREATE TABLE vin(
     id serial primary key,
     nomer varchar(255)
