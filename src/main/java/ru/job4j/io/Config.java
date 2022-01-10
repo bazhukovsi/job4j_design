@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringJoiner;
 
 public class Config {
     private final String path;
@@ -32,24 +31,10 @@ public class Config {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (Map.Entry<String, String> pair : values.entrySet()) {
-            System.out.println(pair.getKey() + " : " + pair.getValue());
-        }
-    }
-
-    @Override
-    public String toString() {
-        StringJoiner out = new StringJoiner(System.lineSeparator());
-        try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
-            read.lines().forEach(out::add);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return out.toString();
     }
 
     public String value(String key) {
-        String output = "Нет записи с таким ключом.";
+        String output = "";
         for (Map.Entry<String, String> pair : values.entrySet()) {
             if (pair.getKey().equals(key)) {
                 output = pair.getValue();
@@ -60,13 +45,8 @@ public class Config {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Config("./data/pair_without_comment.properties"));
-        System.out.println();
-        System.out.println("=============================================");
-        System.out.println();
         Config config = new Config("./data/pair_without_comment.properties");
         config.load();
-        System.out.println("==============================================");
-        System.out.println(config.value("hibernate.connection.url"));
+        System.out.println(config.value("name"));
     }
 }

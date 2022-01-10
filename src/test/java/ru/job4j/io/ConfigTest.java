@@ -16,11 +16,12 @@ public class ConfigTest {
         assertThat(config.value("name"), is("Bazhukov"));
     }
 
-    @Test(expected =  IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void whenPairNotValue() {
         String path = "./data/pair_without_comment.properties";
         Config config = new Config(path);
         config.load();
         config.value("surname");
     }
+
 }

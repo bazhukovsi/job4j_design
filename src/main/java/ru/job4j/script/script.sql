@@ -1,7 +1,7 @@
 
 CREATE TABLE car(
       id serial primary key,
-      name varchar(255),
+      name_car varchar(255),
 	  engine real,
       description text)
 
