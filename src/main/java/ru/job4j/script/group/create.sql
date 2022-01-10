@@ -41,17 +41,13 @@ insert into devices_people(people_id, device_id) values (3, 5);
 
 select avg(price) from devices;
 
-select p.people_name, avg(dev.price) from devices as dev
-join people as p
-join devices_people as dev_p
-on dev_p.people_id = p.id
-on dev_p.device_id = dev.id
+select p.people_name, avg(dev.price) from devices_people as dev_p
+join devices as dev on dev_p.people_id = dev.id
+join people as p on dev_p.people_id = p.id
 group by p.people_name;
 
-select p.people_name, avg(dev.price) from devices as dev
-join people as p
-join devices_people as dev_p
-on dev_p.people_id = p.id
-on dev_p.device_id = dev.id
-group by p.people_name
+select p.people_name, avg(dev.price) from devices_people as dev_p
+join devices as dev on dev_p.device_id = dev.id
+join people as p on dev_p.people_id = p.id
+group by p.people_name;
 having avg(dev.price) > 4;
