@@ -41,9 +41,7 @@ group by p.product_name, t.type_name
 having t.type_name = 'СЫР';
 
 
-select product_name from product where product_name like '%мороженое'
-or product_name like 'мороженое%'
-or product_name like '%мороженое%';
+select product_name from product where product_name like '%мороженое';
 
 select product_name, expired_date from product
 where expired_date < current_date;
