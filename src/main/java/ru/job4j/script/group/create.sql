@@ -51,3 +51,4 @@ join devices as dev on dev_p.device_id = dev.id
 join people as p on dev_p.people_id = p.id
 group by p.people_name;
 having avg(dev.price) > 4;
+
