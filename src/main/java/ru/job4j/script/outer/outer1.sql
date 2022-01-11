@@ -1,3 +1,4 @@
+
 create table department(
 	id serial primary key,
 	dep_name varchar(255)
@@ -42,15 +43,15 @@ on d.id = emp.dep_id;
 select *
 from department d cross join employees emp;
 
-select d.dep_name
+select *
 from department d left outer join employees emp
 on d.id = emp.dep_id
 where emp.emp_name is null;
 
-select *
-from department d left outer join employees emp
+select emp.id, emp.emp_name, emp.dep_id, d.id, d.dep_name
+from employees emp right outer join department d
 on d.id = emp.dep_id;
 
-select *
-from employees emp right outer join department d
-on emp.dep_id = d.id;
+select emp.id, emp.emp_name, emp.dep_id, d.id, d.dep_name
+from department d left outer join employees emp
+on d.id = emp.dep_id;
