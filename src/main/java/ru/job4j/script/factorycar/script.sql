@@ -1,3 +1,13 @@
+create table body (
+    id serial primary key,
+    body_name varchar(255)
+);
+
+create table engine (
+    id serial primary key,
+    engine_name varchar(255)
+);
+
 create table transmission (
     id serial primary key,
     transmission_name varchar(255)
