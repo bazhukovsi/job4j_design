@@ -23,11 +23,18 @@ public class ImportDB {
 
     public List<User> load() throws IOException {
         List<User> users = new ArrayList<>();
+        int count = 0;
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             while (rd.ready()) {
+                count++;
                 String user = rd.readLine();
-                String[] userDb = user.split(";");
-                users.add(new User(userDb[0], userDb[1]));
+                String[] userDb = user.split(";", 0);
+                if (userDb.length == 2 && !userDb[0].equals("") && !userDb[1].equals("")) {
+                    users.add(new User(userDb[0], userDb[1]));
+                } else {
+                    System.out.println("Неправильный формат входных данных в строке " + count);
+                    throw new IllegalArgumentException();
+                }
             }
         }
         return users;
