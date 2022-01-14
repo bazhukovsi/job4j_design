@@ -70,4 +70,3 @@ public class ImportDB {
         db.save(db.load());
     }
 }
-
