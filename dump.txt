@@ -7,3 +7,4 @@ Elena Bazhukova2;ya_bazhukova3@yandex.ru;
 Elena Bazhukova3;ya_bazhukova4@yandex.ru;
 Elena Bazhukova4;ya_bazhukova5@yandex.ru;
 Elena Bazhukova5;ya_bazhukova6@yandex.ru;
+Elena Bazhukova6;ya_bazhukova7@yandex.ru;
