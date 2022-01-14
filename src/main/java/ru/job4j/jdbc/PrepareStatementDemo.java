@@ -110,9 +110,7 @@ public class PrepareStatementDemo {
         System.out.println(getTableScheme(prepareStatementDemo.connection, "cities"));
         System.out.println("Обновляем запись");
         City city2 = new City(10, "Boston", 2000000);
-        //prepareStatementDemo.update(city2);
         System.out.println("Удаляем элемент таблицы");
-        //prepareStatementDemo.delete(11);
         System.out.println("Вывод на экран");
         cities = prepareStatementDemo.findAll();
         System.out.println(cities.size());
