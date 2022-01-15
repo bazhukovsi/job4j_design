@@ -32,8 +32,7 @@ public class ImportDB {
                 if (userDb.length == 2 && !userDb[0].equals("") && !userDb[1].equals("")) {
                     users.add(new User(userDb[0], userDb[1]));
                 } else {
-                    System.out.println("Неправильный формат входных данных в строке " + count);
-                    throw new IllegalArgumentException();
+                    throw new IllegalArgumentException("Неправильный формат входных данных в строке " + count);
                 }
             }
         }
