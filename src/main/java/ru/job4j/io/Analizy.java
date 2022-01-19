@@ -12,12 +12,12 @@ public class Analizy {
              BufferedWriter writer = new BufferedWriter(new FileWriter(target))) {
             while (reader.ready()) {
                 String[] pairLog = reader.readLine().split(" ");
-                if ((pairLog[0].equals("400") || pairLog[0].equals("500")) && checkError) {
+                if (("400".equals(pairLog[0]) || "500".equals(pairLog[0])) && checkError) {
                     csvOut += pairLog[1].concat(";");
                     checkError = false;
                     checkWork = true;
                 }
-                if ((pairLog[0].equals("200") || pairLog[0].equals("300")) && checkWork) {
+                if (("200".equals(pairLog[0]) || "300".equals(pairLog[0])) && checkWork) {
                     checkError = true;
                     checkWork = false;
                     csvOut += pairLog[1].concat(";");
