@@ -44,3 +44,4 @@ public class FileProperty {
         return Objects.hash(size, name);
     }
 }
+

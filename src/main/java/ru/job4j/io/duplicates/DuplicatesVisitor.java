@@ -32,5 +32,4 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     public List<Path> getDuplicates() {
         return duplicates;
     }
-
 }

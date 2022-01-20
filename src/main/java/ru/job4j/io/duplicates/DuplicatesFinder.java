@@ -14,6 +14,5 @@ public class DuplicatesFinder {
         for (Path path : out) {
             System.out.println(path.toAbsolutePath());
         }
-
     }
 }
