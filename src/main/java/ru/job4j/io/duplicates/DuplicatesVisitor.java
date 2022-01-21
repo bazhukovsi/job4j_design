@@ -11,22 +11,23 @@ import java.util.List;
 import java.util.Map;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
-    List<Path> duplicates = new ArrayList<>();
-    Map<FileProperty, Path> filesOfDir = new HashMap<>();
+    List<Path> duplicates;
+    Map<FileProperty, List<Path>> filesOfDir = new HashMap<>();
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        if (file.toFile().isFile()) {
-            FileProperty fileProperty = new FileProperty(file.toFile().length(), file.getFileName().toString());
-            if (filesOfDir.containsKey(fileProperty)) {
-                duplicates.add(file.toAbsolutePath());
-            } else {
-                filesOfDir.put(fileProperty, file.getFileName());
-            }
-            System.out.println(file.toAbsolutePath());
-        }
+        FileProperty fileProperty = new FileProperty(attrs.size(), file.toFile().getName());
 
-        return FileVisitResult.CONTINUE;
+        if (filesOfDir.containsKey(fileProperty)) {
+            duplicates = new ArrayList<>(filesOfDir.get(fileProperty));
+            duplicates.add(file);
+            filesOfDir.put(fileProperty, duplicates);
+        } else {
+            List<Path> firstValueFile = new ArrayList<>();
+            firstValueFile.add(file);
+            filesOfDir.put(fileProperty, firstValueFile);
+        }
+        return super.visitFile(file, attrs);
     }
 
     public List<Path> getDuplicates() {
