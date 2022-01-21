@@ -35,4 +35,18 @@ public class ArgsNameTest {
         ArgsName jvm = ArgsName.of(new String[] {"-enconding=UTF-8", "-Xmx="});
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void whenNotPrefix() {
+        ArgsName jvm = ArgsName.of(new String[] {"enconding=UTF-8", "-Xmx="});
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenStartsPrefixEquals() {
+        ArgsName jvm = ArgsName.of(new String[] {"-=UTF-8", "-Xmx="});
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenNotEquals() {
+        ArgsName jvm = ArgsName.of(new String[] {"-UTF-8", "-Xmx="});
+    }
 }

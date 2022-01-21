@@ -16,12 +16,19 @@ public class ArgsName {
             throw new IllegalArgumentException("Нет параметров");
         }
         for (int i = 0; i < args.length; i++) {
+            validateEqualsAndPrefix(args[i]);
             String[] param = args[i].split("=", 2);
             if ("".equals(param[1])) {
                 throw new IllegalArgumentException("Значение параметра не задано.");
             } else {
                 values.put(param[0].substring(1), param[1]);
             }
+        }
+    }
+
+    private void validateEqualsAndPrefix(String value) {
+        if (!value.contains("=") || !value.startsWith("-") || value.startsWith("-=")) {
+            throw new IllegalArgumentException("Неправильная сигнатура параметра");
         }
     }
 
