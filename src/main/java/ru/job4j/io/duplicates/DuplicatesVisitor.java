@@ -31,6 +31,11 @@ public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
     }
 
     public List<Path> getDuplicates() {
-        return duplicates;
+        List<Path> duplicatesOut = new ArrayList<>();
+        filesOfDir.values()
+                .stream()
+                .filter(paths -> paths.size() > 1)
+                .forEach(duplicatesOut::addAll);
+        return duplicatesOut;
     }
 }
