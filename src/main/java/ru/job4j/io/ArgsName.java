@@ -22,7 +22,7 @@ public class ArgsName {
             validateEqualsAndPrefix(args[i]);
             String[] param = args[i].split("=", 2);
             if ("".equals(param[1])) {
-                throw new IllegalArgumentException("Значение параметра не задано.");
+                throw new IllegalArgumentException("Значение параметра " + param[0] + " не задано.");
             } else {
                 values.put(param[0].substring(1), param[1]);
             }

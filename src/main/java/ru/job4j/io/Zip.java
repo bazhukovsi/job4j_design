@@ -20,23 +20,19 @@ public class Zip {
         }
     }
 
-    public static void packSingleFile(File source, File target) {
-        try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
-            zip.putNextEntry(new ZipEntry(source.getPath()));
-            try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(source))) {
-                zip.write(out.readAllBytes());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static void main(String[] args) throws IOException {
+        if (args.length != 3) {
+            throw new IllegalArgumentException("Неправильное количество аргументов." + System.lineSeparator()
+                    + " Usage java -jar pack.jar -d=ROOT_FOLDER -e=EXCLUDE_EXT -o=NAME_ZIP");
+        }
         ArgsName zipFile = ArgsName.of(args);
         Path dirZip = Path.of(zipFile.get("d"));
+        if (!dirZip.toFile().isDirectory()) {
+            throw new IllegalArgumentException("Параметр -d не является директорией. Проверьте параметры.");
+        }
         String excludeZip = zipFile.get("e");
         File nameZip = new File(zipFile.get("o"));
-        List<Path> sourceZip = Search.search(dirZip, p -> p.toFile().getName().endsWith(excludeZip));
+        List<Path> sourceZip = Search.search(dirZip, p -> !p.toFile().getName().endsWith(excludeZip));
         Zip.packFiles(sourceZip, nameZip);
     }
 }
