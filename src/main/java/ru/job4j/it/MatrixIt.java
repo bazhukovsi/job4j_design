@@ -10,11 +10,14 @@ public class MatrixIt implements Iterator<Integer> {
 
     public MatrixIt(int[][] data) {
         this.data = data;
-        this.row = data.length;
     }
 
     @Override
     public boolean hasNext() {
+        while (data.length - 1 > row && column == data[row].length) {
+            row++;
+            column = 0;
+        }
         return row < data.length && column < data[row].length;
     }
 
@@ -23,17 +26,12 @@ public class MatrixIt implements Iterator<Integer> {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        if (column == data[row].length) {
-            row++;
-            column = 0;
-        }
         return data[row][column++];
     }
 
     public static void main(String[] args) {
         int[][] in = {
-                {1, 2, 3},
-                {4, 5, 6}
+                {1}, {}, {}, {}, {2}
         };
         MatrixIt matrixIt = new MatrixIt(in);
         while (matrixIt.hasNext()) {
