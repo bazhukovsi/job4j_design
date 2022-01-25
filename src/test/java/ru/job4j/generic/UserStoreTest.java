@@ -6,6 +6,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class UserStoreTest {
+
     @Test
     public void whenAddAndFindThenUsernameIsPetr() {
         UserStore store = new UserStore();
@@ -66,4 +67,5 @@ public class UserStoreTest {
         User result = store.findById("1");
         assertThat(result.getUsername(), is("Petr"));
     }
+
 }
