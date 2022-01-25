@@ -26,4 +26,5 @@ public final class MemStore<T extends Base> implements Store<T> {
     public T findById(String id) {
         return storage.get(id);
     }
+
 }

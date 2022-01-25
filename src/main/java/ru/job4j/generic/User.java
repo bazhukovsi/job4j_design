@@ -11,4 +11,5 @@ public class User extends Base {
     public String getUsername() {
         return username;
     }
+
 }
