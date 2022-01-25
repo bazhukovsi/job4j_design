@@ -31,7 +31,6 @@ public class Generics {
         /**
          * gen.printLowerBoundedWildCard(third);
          */
-
     }
 
     public void printObject(List<?> list) {
