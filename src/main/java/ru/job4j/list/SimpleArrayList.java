@@ -21,7 +21,7 @@ public class SimpleArrayList<T> implements List<T> {
             container = Arrays.copyOf(container, container.length * 2);
         }
         container[size()] = value;
-        size += 1;
+        size++;
     }
 
     @Override
