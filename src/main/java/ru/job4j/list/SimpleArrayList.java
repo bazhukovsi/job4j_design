@@ -1,8 +1,6 @@
 package ru.job4j.list;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 
 public class SimpleArrayList<T> implements List<T> {
 
@@ -11,8 +9,6 @@ public class SimpleArrayList<T> implements List<T> {
     private int size;
 
     private int modCount;
-
-    private int expectedModCount;
 
     public SimpleArrayList(int capacity) {
         this.container = (T[]) new Object[capacity];
@@ -25,24 +21,26 @@ public class SimpleArrayList<T> implements List<T> {
             container = Arrays.copyOf(container, container.length * 2);
         }
         container[size()] = value;
-        size = size + 1;
+        size += 1;
     }
 
     @Override
     public T set(int index, T newValue) {
         Objects.checkIndex(index, size);
+        T oldValue = container[index];
         container[index] = newValue;
-        return container[index];
+        return oldValue;
     }
 
     @Override
     public T remove(int index) {
         Objects.checkIndex(index, size);
         modCount++;
-        System.arraycopy(container, index + 1,
-                container, index, container.length - index - 1);
+        T removeValue = container[index];
+        System.arraycopy(container, index + 1, container, index, container.length - index - 1);
         container[container.length - 1] = null;
-        return container[index];
+        size--;
+        return removeValue;
     }
 
     @Override
@@ -60,16 +58,25 @@ public class SimpleArrayList<T> implements List<T> {
     public Iterator<T> iterator() {
         return new Iterator<T>() {
 
+            private final int expectedModCount = modCount;
+
+            private int point = 0;
+
             @Override
             public boolean hasNext() {
-                return true;
+                if (expectedModCount != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                return point < size;
             }
 
             @Override
             public T next() {
-                return container[0];
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return container[point++];
             }
-
         };
     }
 }
