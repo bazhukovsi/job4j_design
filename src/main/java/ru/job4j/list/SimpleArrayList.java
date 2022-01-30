@@ -39,8 +39,7 @@ public class SimpleArrayList<T> implements List<T> {
     public T remove(int index) {
         T removeValue = get(index);
         System.arraycopy(container, index + 1, container, index, size - index - 1);
-        int newSize = size - 1;
-        container[newSize] = null;
+        container[size - 1] = null;
         size--;
         modCount++;
         return removeValue;
