@@ -4,14 +4,14 @@ import org.hamcrest.core.Is;
 import org.junit.Test;
 import java.util.Iterator;
 import static org.junit.Assert.*;
-import ru.job4j.collection.linkedlisttest.List;
+import ru.job4j.collection.linkedlisttest.List2;
 import ru.job4j.collection.linkedlisttest.SimpleLinkedList;
 
 public class SimpleLinkedListTest {
 
     @Test
     public void whenAddAndGet() {
-        List<Integer> list = new SimpleLinkedList<>();
+        List2<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         list.add(2);
         assertThat(list.get(0), Is.is(1));
@@ -20,7 +20,7 @@ public class SimpleLinkedListTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void whenGetFromOutOfBoundThenExceptionThrown() {
-        List<Integer> list = new SimpleLinkedList<>();
+        List2<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         list.add(2);
         list.get(2);
@@ -28,7 +28,7 @@ public class SimpleLinkedListTest {
 
     @Test
     public void whenAddIterHasNextTrue() {
-        List<Integer> list = new SimpleLinkedList<>();
+        List2<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         Iterator<Integer> it = list.iterator();
         assertThat(it.hasNext(), Is.is(true));
@@ -36,7 +36,7 @@ public class SimpleLinkedListTest {
 
     @Test
     public void whenAddIterNextOne() {
-        List<Integer> list = new SimpleLinkedList<>();
+        List2<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         Iterator<Integer> it = list.iterator();
         assertThat(it.next(), Is.is(1));
@@ -44,14 +44,14 @@ public class SimpleLinkedListTest {
 
     @Test
     public void whenEmptyIterHashNextFalse() {
-        List<Integer> list = new SimpleLinkedList<>();
+        List2<Integer> list = new SimpleLinkedList<>();
         Iterator<Integer> it = list.iterator();
         assertThat(it.hasNext(), Is.is(false));
     }
 
     @Test
     public void whenAddIterMultiHasNextTrue() {
-        List<Integer> list = new SimpleLinkedList<>();
+        List2<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         Iterator<Integer> it = list.iterator();
         assertThat(it.hasNext(), Is.is(true));
@@ -60,7 +60,7 @@ public class SimpleLinkedListTest {
 
     @Test
     public void whenAddIterNextOneNextTwo() {
-        List<Integer> list = new SimpleLinkedList<>();
+        List2<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         list.add(2);
         Iterator<Integer> it = list.iterator();
@@ -70,7 +70,7 @@ public class SimpleLinkedListTest {
 
     @Test
     public void whenGetIteratorTwiceThenEveryFromBegin() {
-        List<Integer> list = new SimpleLinkedList<>();
+        List2<Integer> list = new SimpleLinkedList<>();
         list.add(1);
         list.add(2);
         Iterator<Integer> first = list.iterator();
