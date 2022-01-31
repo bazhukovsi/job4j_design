@@ -1,11 +1,11 @@
-package ru.job4j.collection.list;
+package ru.job4j.collection.linkedlisttest;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class SimpleLinkedList<E> implements ru.job4j.collection.list.List<E> {
+public class SimpleLinkedList<E> implements List<E> {
 
     private int modCount;
     int size = 0;
@@ -75,6 +75,5 @@ public class SimpleLinkedList<E> implements ru.job4j.collection.list.List<E> {
             }
         };
     }
-
 }
 
