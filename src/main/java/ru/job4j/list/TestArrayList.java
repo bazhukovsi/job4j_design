@@ -2,7 +2,7 @@ package ru.job4j.list;
 
 public class TestArrayList {
     public static void main(String[] args) {
-        SimpleArrayList<String> simple = new SimpleArrayList<>(10);
+        SimpleArrayList<String> simple = new SimpleArrayList<>(0);
         simple.add("Сергей");
         simple.add("Елена");
         simple.add("Саша");
