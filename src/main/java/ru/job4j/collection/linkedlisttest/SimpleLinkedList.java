@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class SimpleLinkedList<E> implements List2<E> {
-
     private int modCount;
     int size = 0;
     private Node<E> first;
