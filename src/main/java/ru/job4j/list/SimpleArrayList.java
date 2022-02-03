@@ -25,10 +25,7 @@ public class SimpleArrayList<T> implements List<T> {
     }
 
     private void grow() {
-        if (container.length == 0) {
-            this.container = (T[]) new Object[1];
-        }
-        container = Arrays.copyOf(container, container.length * 2);
+        container = Arrays.copyOf(container, (container.length + 1) * 2);
     }
 
     @Override
