@@ -47,4 +47,5 @@ public class ConfigTest {
         config.load();
         config.value("name");
     }
+
 }
