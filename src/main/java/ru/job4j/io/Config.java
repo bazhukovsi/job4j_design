@@ -23,7 +23,8 @@ public class Config {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             while (read.ready()) {
                 String temp = read.readLine();
-                if (!temp.startsWith("#") && !temp.equals("")) {
+                String[] strings = temp.split("=");
+                if (!temp.startsWith("#") && !temp.equals("") && strings.length == 2) {
                     String[] addMap = temp.split("=");
                     values.put(addMap[0], addMap[1]);
                 }
