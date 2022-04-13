@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,35 +20,50 @@ public class Config {
      * - пустые строки в файле
      * - наличие комментария (#)
      */
+//    Проверку строки на соответствие шаблону "ключ=значение"
+//    вынесите в отдельный метод.
+//    Строка с нарушением шаблона должна вызывать исключение.
+//    Строка с несколькими символами "=" допускается,
+//    и должна быть распознана как - ключ - это все символы до
+//    первого вхождения "=", значение - это все символы после первого вхождения
+//    символа "=" - "ключ=значение=1" должно быть распознано как ключ - "ключ", значение - "значение=1".
+//    Исключите помещение в карту пары с значением, равным null.
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             while (read.ready()) {
                 String temp = read.readLine();
-                String[] strings = temp.split("=");
-                if (!temp.startsWith("#") && !temp.equals("") && strings.length == 2) {
-                    String[] addMap = temp.split("=");
-                    values.put(addMap[0], addMap[1]);
-                }
+                examination(temp);
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public String value(String key) {
-        String output = "";
-        for (Map.Entry<String, String> pair : values.entrySet()) {
-            if (pair.getKey().equals(key)) {
-                output = pair.getValue();
-                return output;
+    public void examination(String temp) {
+        String[] strings = temp.split("=");
+        String value = "";
+        if (!temp.startsWith("#") && !temp.equals("")) {
+            if (temp.startsWith("=") || temp.endsWith("=") || !temp.contains("=") || temp.contains("==")) {
+                throw new IllegalArgumentException();
             }
+            if (strings.length > 2) {
+                value = temp.substring(temp.indexOf("=") + 1);
+            } else {
+                value = strings[1];
+            }
+            values.put(strings[0], value);
         }
-        throw new IllegalArgumentException();
+    }
+
+    public String value(String key) {
+        return values.get(key);
     }
 
     public static void main(String[] args) {
-        Config config = new Config("./data/pair_without_comment.properties");
+        Config config = new Config("./data/pair_no_key.properties");
         config.load();
-        System.out.println(config.value("name"));
+        System.out.println(config.value("str"));
     }
 }
