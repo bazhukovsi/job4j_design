@@ -50,4 +50,5 @@ public class Config {
         config.load();
         System.out.println(config.value("name"));
     }
+
 }
