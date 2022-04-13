@@ -27,17 +27,19 @@ public class Config {
                 String temp = read.readLine();
                 examination(temp);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void examination(String temp) {
-        String[] strings = temp.split("=");
+        String[] strings;
         String value = "";
-        if (!temp.startsWith("#") && !temp.equals("")) {
+        if (temp.equals("") || temp.startsWith("#")) {
+            return;
+        }
+        if (temp.contains("=")) {
+            strings = temp.split("=");
             if (temp.startsWith("=") || temp.endsWith("=") || !temp.contains("=") || temp.contains("==")) {
                 throw new IllegalArgumentException();
             }
@@ -57,7 +59,7 @@ public class Config {
     }
 
     public static void main(String[] args) {
-        Config config = new Config("./data/pair_no_value_null.properties");
+        Config config = new Config("./data/pair_without_comment.properties");
         config.load();
         System.out.println(config.value("name"));
     }

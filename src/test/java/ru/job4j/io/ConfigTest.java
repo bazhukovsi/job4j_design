@@ -36,14 +36,6 @@ public class ConfigTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void whenPairNoEqually() {
-        String path = "./data/pair_no_equally.properties";
-        Config config = new Config(path);
-        config.load();
-        config.value("name");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
     public void whenPairmManyEqually() {
         String path = "./data/pair_many_equally.properties";
         Config config = new Config(path);
