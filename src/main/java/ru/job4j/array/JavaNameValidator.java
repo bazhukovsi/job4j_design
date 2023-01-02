@@ -6,7 +6,7 @@ public class JavaNameValidator {
     }
 
     public static boolean isNameValid(String name) {
-        if (name.length() == 0) {
+        if (name.isEmpty()) {
             return false;
         }
 
