@@ -8,7 +8,7 @@ public class DeckOfCards {
         Value[] values = Value.values();
         Stream.of(suits)
                 .flatMap(value -> Stream.of(values)
-                        .map(suit -> value + " " + suit))
-                .forEach(System.out::println);
+                        .map(suit -> new Card(value, suit)))
+                .forEach((card) -> System.out.println(card.getValue() + " " + card.getSuit()));
     }
 }
