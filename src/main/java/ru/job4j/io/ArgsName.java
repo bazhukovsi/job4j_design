@@ -14,7 +14,6 @@ public class ArgsName {
     }
 
     private void parse(String[] args) {
-        /* TODO parse args to values. */
         if (args.length == 0) {
             throw new IllegalArgumentException("Нет параметров");
         }
@@ -47,5 +46,8 @@ public class ArgsName {
 
         ArgsName zip = ArgsName.of(new String[]{"-out=project.zip", "-encoding=UTF-8"});
         System.out.println(zip.get("out"));
+
+        ArgsName encoding = ArgsName.of(new String[]{"-out=project.zip", "-encoding=UTF-8"});
+        System.out.println(encoding.get("encoding"));
     }
 }
