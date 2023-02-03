@@ -39,17 +39,14 @@ public class Config {
             return;
         }
         if (temp.contains("=")) {
-            strings = temp.split("=");
-            if (temp.startsWith("=") || temp.endsWith("=") || !temp.contains("=") || temp.contains("==")) {
+            strings = temp.split("=", 2);
+            if (temp.startsWith("=")) {
                 throw new IllegalArgumentException();
             }
-            if (strings.length > 2) {
-                value = temp.substring(temp.indexOf("=") + 1);
+            if (strings.length == 2) {
+                values.put(strings[0], strings[1]);
             } else {
-                value = strings[1];
-            }
-            if (!("null".equals(value))) {
-                values.put(strings[0], value);
+                throw new IllegalArgumentException();
             }
         }
     }
