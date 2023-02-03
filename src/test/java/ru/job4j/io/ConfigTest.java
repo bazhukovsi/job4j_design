@@ -1,10 +1,6 @@
 package ru.job4j.io;
 
-import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.junit.Test;
-
-import java.util.Optional;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -43,12 +39,12 @@ public class ConfigTest {
         config.value("name");
     }
 
-    @Test
-    public void whenPairValueNull() {
-        String path = "./data/pair_no_value_null.properties";
+    @Test(expected = IllegalArgumentException.class)
+    public void whenPairNoEqually() {
+        String path = "./data/pair_no_equally.properties";
         Config config = new Config(path);
         config.load();
-        assertNull(config.value("name"));
+        config.value("name");
     }
 
 }

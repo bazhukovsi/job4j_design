@@ -34,20 +34,23 @@ public class Config {
 
     public void examination(String temp) {
         String[] strings;
-        String value = "";
         if (temp.equals("") || temp.startsWith("#")) {
             return;
         }
-        if (temp.contains("=")) {
-            strings = temp.split("=", 2);
-            if (temp.startsWith("=")) {
-                throw new IllegalArgumentException();
-            }
-            if (strings.length == 2) {
-                values.put(strings[0], strings[1]);
-            } else {
-                throw new IllegalArgumentException();
-            }
+        if (!temp.contains("=")) {
+            throw new IllegalArgumentException();
+        }
+        /**
+         * Проверка на соответствие правилам формирования пары значений согласно заданию
+         */
+        strings = temp.split("=", 2);
+        if (temp.startsWith("=") || "".equals(strings[1]) || strings[1].startsWith("=")) {
+            throw new IllegalArgumentException();
+        }
+        if (strings.length == 2) {
+            values.put(strings[0], strings[1]);
+        } else {
+            throw new IllegalArgumentException();
         }
     }
 
