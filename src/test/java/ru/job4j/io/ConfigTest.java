@@ -39,7 +39,7 @@ public class ConfigTest {
         config.value("name");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void whenPairNoEqually() {
         String path = "./data/pair_no_equally.properties";
         Config config = new Config(path);

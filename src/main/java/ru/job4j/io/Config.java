@@ -38,11 +38,8 @@ public class Config {
             return;
         }
         if (!temp.contains("=")) {
-            throw new IllegalArgumentException();
+           return;
         }
-        /**
-         * Проверка на соответствие правилам формирования пары значений согласно заданию
-         */
         strings = temp.split("=", 2);
         if (temp.startsWith("=") || "".equals(strings[1]) || strings[1].startsWith("=")) {
             throw new IllegalArgumentException();
