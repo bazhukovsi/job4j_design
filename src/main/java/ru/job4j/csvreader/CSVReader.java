@@ -116,5 +116,4 @@ public class CSVReader {
         validation(argsName);
         handle(argsName);
     }
-
 }
