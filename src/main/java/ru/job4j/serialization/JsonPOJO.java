@@ -11,7 +11,7 @@ public class JsonPOJO {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("brand", car.getCarBrand());
         jsonObject.put("doors", car.getCountOfDoors());
-        jsonObject.put("fourWheelDrive", car.getEngine());
+        jsonObject.put("fourWheelDrive", car.isFourWheelDrive());
         jsonObject.put("engine", car.getEngine());
         jsonObject.put("futures", car.getFeature());
 
