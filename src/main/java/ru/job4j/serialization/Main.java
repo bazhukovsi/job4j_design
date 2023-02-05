@@ -12,6 +12,8 @@ public class Main {
          */
         Gson gson = new GsonBuilder().create();
         System.out.println(gson.toJson(car));
+        String carText = gson.toJson(car);
+        System.out.println(carText);
         /**
          * Модифицируем JSON строку
          */
@@ -27,6 +29,7 @@ public class Main {
                         + "\"feature\":"
                         + "[\"Red\",\"TVSet\",\"GPS\"]"
                         + "}";
+
         Car carMod = gson.fromJson(carJson, Car.class);
         System.out.println(carMod);
     }
